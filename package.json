@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/Minkoff/wordpress-react-event-calendar.git"
+    "url": "https://bitbucket.org/Minkoff/wordpress-react-event-calendar.git"
   },
   "author": "Alex Minkoff",
   "private": true,
