@@ -14,9 +14,17 @@ class CalendarFrame extends Component {
 		super(props);
 		this.state = { height: 0 }
 	}
+
+	//
+	// Get iframe body element
+	//
 	getFrameBody() {
 		return ReactDOM.findDOMNode(this).contentDocument.body;
 	}
+
+	//
+	// Set iframe height to its content height
+	//
 	setHeight() {
 		var height = this.getFrameBody().scrollHeight;
 		if (height != this.state.height) {
@@ -25,16 +33,28 @@ class CalendarFrame extends Component {
 			});
 		}
 	}
+
+	//
+	// On mount, render to iframe and start polling for height changes
+	//
 	componentDidMount() {
 		this.$container = document.createElement('div');
 		this.getFrameBody().appendChild(this.$container);
 		ReactDOM.render(this.props.children, this.$container);
 		setInterval(this.setHeight.bind(this), 10);
 	}
+
+	//
+	// On update, update iframe contents and height
+	//
 	componentDidUpdate() {
 		ReactDOM.render(this.props.children, this.$container);
 		this.setHeight();
 	}
+
+	//
+	// Get iframe styles
+	//
 	getStyle() {
 		return {
 			border: 'none',
@@ -42,8 +62,13 @@ class CalendarFrame extends Component {
 			height: this.state.height
 		}
 	}
+
+	//
+	// Render
+	//
 	render() {
-		return <iframe style={this.getStyle()} allowTransparency="true" />;
+		return <iframe className="wprec-calendar-frame"
+			style={this.getStyle()} allowTransparency="true" />;
 	}
 }
 

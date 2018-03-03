@@ -11,16 +11,10 @@ class CalendarGrid extends Component {
 	//
 	getYear()       { return this.props.date.getFullYear() }
 	getMonth()      { return this.props.date.getMonth() }
-
-	// Get first and last day of the current month
 	getMonthStart() { return new Date(this.getYear(), this.getMonth(), 1) }
 	getMonthEnd()   { return new Date(this.getYear(), this.getMonth() + 1, 0) }
-
-	// Get # of days to show from previous and next month
 	getPrevDays()   { return this.getMonthStart().getDay() }
 	getNextDays()   { return 6 - this.getMonthEnd().getDay() }
-
-	// Get the first and last days to show
 	getStartDay()   { return 1 - this.getPrevDays() }
 	getEndDay()     { return this.getMonthEnd().getDate() + this.getNextDays() }
 

@@ -5,6 +5,10 @@ import React, { Component } from 'react';
 //
 
 class CalendarHeaders extends Component {
+
+	//
+	// Render
+	//
 	render() {
 		return (
 			<thead className="wprec-calendar-headers">

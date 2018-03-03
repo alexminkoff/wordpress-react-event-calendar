@@ -14,12 +14,16 @@ class CalendarNavigation extends Component {
 	}
 
 	//
-	// Go to previous or next month
+	// Go to previous month
 	//
 	prevMonth(e) {
 		e.preventDefault();
 		this.props.setDate(this.addMonths(this.props.date, -1));
 	}
+
+	//
+	// Go to next month
+	//
 	nextMonth(e) {
 		e.preventDefault();
 		this.props.setDate(this.addMonths(this.props.date, 1));
