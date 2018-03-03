@@ -55,7 +55,7 @@ class WordPress_React_Event_Calendar
 	*/
 	function shortcode( $atts = [], $content = null, $tag = '' ) {
 		if (isset($atts['id'])) {
-			return '<div class="wprec-calendar" data-id="' . $atts['id'] . '"></div>';
+			return '<div class="wprec-shortcode" data-id="' . $atts['id'] . '"></div>';
 		}
 		return '';
 	}

@@ -1,6 +1,69 @@
+.wprec-calendar-frame {
+	border: none;
+	width: 100%;
+}
+
+.wprec-calendar-event-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.1);
+	&__overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.3);
+	}
+	&__window {
+		box-sizing: border-box;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow-y: auto;
+	}
+	&__wrap1 {
+		box-sizing: border-box;
+		width: 100%;
+		min-height: 100%;
+		display: table;
+	}
+	&__wrap2 {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	&__wrap3 {
+		width: 600px;
+		border-radius: 3px;
+		background: white;
+		position: relative;
+		margin: 0 auto;
+	}
+	&__wrap4 {
+		padding: 40px;
+	}
+	&__title {
+		margin: 0;
+		padding: 0;
+		font-size: 2em;
+		margin-bottom: 20px;
+	}
+}
+
 .wprec-calendar {
 	position: relative;
 	display: block !important;
+	&__title {
+		font-size: 2em;
+		margin-bottom: 1em;
+		font-weight: bold;
+		color: #444;
+	}
 	&__table {
 		width: 100%;
 		border-collapse: separate;
@@ -9,6 +72,24 @@
 		background: #FFF;
 		border-radius: 3px;
 		box-shadow: 0 0 10px 2px rgba(#000, 0.1);
+	}
+	&__header {
+		border-top: 1px solid #CCC;
+		border-left: 1px solid #CCC;
+		padding: 8px;
+		background: rgba(#469, 0.075);
+		font-weight: normal;
+		font-size: 14px;
+		color: #444;
+		&:last-child {
+			border-right: 1px solid #CCC;
+		}
+		&:first-child {
+			border-top-left-radius: 3px;
+		}
+		&:last-child {
+			border-top-right-radius: 3px;
+		}
 	}
 }
 
@@ -61,29 +142,7 @@
 	}
 }
 
-.wprec-calendar-headers {
-	th {
-		border-top: 1px solid #CCC;
-		border-left: 1px solid #CCC;
-		padding: 8px;
-		background: rgba(#469, 0.075);
-		font-weight: normal;
-		font-size: 14px;
-		color: #444;
-	}
-	th:last-child {
-		border-right: 1px solid #CCC;
-	}
-	th:first-child {
-		border-top-left-radius: 3px;
-	}
-	th:last-child {
-		border-top-right-radius: 3px;
-	}
-}
-
 .wprec-calendar-grid {
-
 	&__cell {
 		background: #FFF;
 		border-top: 1px solid #CCC;
@@ -94,9 +153,9 @@
 		box-sizing: border-box;
 		vertical-align: top;
 		padding: 0;
-	}
-	&__cell:last-child {
-		border-right: 1px solid #CCC;
+		&:last-child {
+			border-right: 1px solid #CCC;
+		}
 	}
 	&__row:last-child &__cell {
 		border-bottom: 1px solid #CCC;
@@ -107,7 +166,6 @@
 	&__row:last-child &__cell:last-child {
 		border-bottom-right-radius: 3px;
 	}
-
 	&__date {
 		font-size: 16px;
 		text-align: right;
@@ -123,7 +181,6 @@
 		margin-left: 5px;
 		font-weight: bold;
 	}
-
 	&__event {
 		display: block;
 		font-size: 11px;
@@ -137,23 +194,17 @@
 		&,
 		&--blue {
 			background: rgba(#469, 0.15);
+			color: #469;
 			&:hover {
 				background: rgba(#469, 0.125);
 			}
-			color: #469;
 		}
 		&--red {
 			background: rgba(#955, 0.15);
+			color: #955;
 			&:hover {
 				background: rgba(#955, 0.125);
 			}
-			color: #955;
 		}
 	}
-}
-.wprec-calendar-title {
-	font-size: 2em;
-	margin-bottom: 1em;
-	font-weight: bold;
-	color: #444;
 }

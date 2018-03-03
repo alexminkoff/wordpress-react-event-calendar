@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
-import CalendarFrame from './calendar-frame.jsx';
-import CalendarTitle from './calendar-title.jsx';
-import CalendarNavigation from './calendar-navigation.jsx';
-import CalendarHeaders from './calendar-headers.jsx';
-import CalendarGrid from './calendar-grid.jsx';
+import CalendarFrame from './calendar/frame.jsx';
+import CalendarNavigation from './calendar/navigation.jsx';
+import CalendarGrid from './calendar/grid.jsx';
+import CalendarModals from './calendar/modals.jsx';
+import CalendarEventModal from './calendar/event-modal.jsx'
 
 import DemoData from '../demo-data.js';
+
+var dateFormat = require('dateformat');
 
 //
 // WPREC Calendar
@@ -19,11 +21,11 @@ class Calendar extends Component {
 	//
 	constructor(props) {
 		super(props);
-		this.css = document.getElementById('wprec-public-css');
 		this.state = {
 			date: new Date(),
 			mounted: false,
-			events: DemoData
+			events: DemoData,
+			event: null
 		};
 	}
 
@@ -35,10 +37,24 @@ class Calendar extends Component {
 	}
 
 	//
+	// Set the current event
+	//
+	setEvent(event) {
+		this.setState({ event: event });
+	}
+
+	//
 	// Set the current date
 	//
 	componentDidMount() {
 		this.setState({ mounted: true });
+	}
+
+	//
+	// Get calendar title
+	//
+	getTitle() {
+		return dateFormat(this.props.date, 'mmmm yyyy');
 	}
 
 	//
@@ -47,15 +63,29 @@ class Calendar extends Component {
 	render() {
 		return (
 			<CalendarFrame>
-				<link href={this.css.href} rel="stylesheet" />
 				<div className="wprec-calendar" style={{ display: 'none' }}>
-					<CalendarTitle date={this.state.date} />
+					<div className="wprec-calendar__title">{this.getTitle()}</div>
 					<CalendarNavigation date={this.state.date} setDate={this.setDate.bind(this)} />
 					<table className="wprec-calendar__table">
-						<CalendarHeaders />
-						<CalendarGrid date={this.state.date} events={this.state.events} />
+						<thead>
+							<tr>
+								<th className="wprec-calendar__header">Sun</th>
+								<th className="wprec-calendar__header">Mon</th>
+								<th className="wprec-calendar__header">Tue</th>
+								<th className="wprec-calendar__header">Wed</th>
+								<th className="wprec-calendar__header">Thu</th>
+								<th className="wprec-calendar__header">Fri</th>
+								<th className="wprec-calendar__header">Sat</th>
+							</tr>
+						</thead>
+						<CalendarGrid date={this.state.date} events={this.state.events} setEvent={this.setEvent.bind(this)} />
 					</table>
 				</div>
+				<CalendarModals>
+					{this.state.event !== null &&
+						<CalendarEventModal event={this.state.event} setEvent={this.setEvent.bind(this)} />
+					}
+				</CalendarModals>
 			</CalendarFrame>
 		);
 	}

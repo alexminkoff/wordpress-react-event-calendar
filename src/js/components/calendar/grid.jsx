@@ -6,6 +6,11 @@ import React, { Component } from 'react';
 
 class CalendarGrid extends Component {
 
+	openModal(event, e) {
+		e.preventDefault();
+		this.props.setEvent(event);
+	}
+
 	//
 	// Date helpers
 	//
@@ -86,7 +91,7 @@ class CalendarGrid extends Component {
 			date => (date.year == y && date.month == m && date.day == d)
 		);
 		return events.map((event) =>
-			<a className={this.getEventClass(event)} href="#" key={event.id}>
+			<a className={this.getEventClass(event)} href="#" key={event.id} onClick={this.openModal.bind(this, event)}>
 				<span className="wprec-calendar-grid__time">{this.getEventTime(event)}</span> {event.title}
 			</a>
 		);
