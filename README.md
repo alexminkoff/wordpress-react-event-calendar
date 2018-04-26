@@ -11,5 +11,5 @@ WordPress/React Event Calendar (WPREC) is a calendar plugin for WordPress. Creat
 ### Upcoming features ###
 
 * Manage events from the WordPress backend
-* Responsive styling
 * Detailed event information overlay
+* Cross-browser compatibility
