@@ -60,6 +60,9 @@ class CalendarGrid extends Component {
 		if (date.getMonth() != this.getMonth()) {
 			className.push('wprec-calendar-grid__cell--disabled');
 		}
+		if (!this.hasEvents(date)) {
+			className.push('wprec-calendar-grid__cell--empty');
+		}
 		return className.join(' ');
 	}
 
@@ -81,16 +84,36 @@ class CalendarGrid extends Component {
 	}
 
 	//
-	// Get the events that fall on a given date
+	// Get event data for a given date
 	//
-	getEvents(date) {
+	getEventData(date) {
 		var y = date.getFullYear();
 		var m = date.getMonth();
 		var d = date.getDate();
-		var events = this.props.events.filter(
+		return this.props.events.filter(
 			date => (date.year == y && date.month == m && date.day == d)
 		);
-		return events.map((event) =>
+	}
+
+	isEmpty() {
+		var y = this.props.date.getFullYear();
+		var m = this.props.date.getMonth();
+		return this.props.events.filter(
+			date => (date.year == y && date.month == m)).length === 0;
+	}
+
+	//
+	// Check if a date has events
+	//
+	hasEvents(date) {
+		return this.getEventData(date).length > 0;
+	}
+
+	//
+	// Get the events that fall on a given date
+	//
+	getEvents(date) {
+		return this.getEventData(date).map((event) =>
 			<a className={this.getEventClass(event)} href="#" key={event.id} onClick={this.openModal.bind(this, event)}>
 				<span className="wprec-calendar-grid__time">{this.getEventTime(event)}</span> {event.title}
 			</a>
@@ -116,11 +139,22 @@ class CalendarGrid extends Component {
 	}
 
 	//
+	// Get CSS class name
+	//
+	getClassName() {
+		var className = ['wprec-calendar-grid'];
+		if (this.isEmpty()) {
+			className.push('wprec-calendar-grid--empty');
+		}
+		return className.join(' ');
+	}
+
+	//
 	// Render
 	//
 	render() {
 		return (
-			<tbody className="wprec-calendar-grid">{this.getRows()}</tbody>
+			<tbody className={this.getClassName()}>{this.getRows()}</tbody>
 		);
 	}
 }

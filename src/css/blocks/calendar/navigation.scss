@@ -1,0 +1,47 @@
+.wprec-calendar-navigation {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 2em;
+	&__prev,
+	&__next {
+		text-decoration: none;
+		background-color: #FFF;
+		color: #666;
+		border: 1px solid #CCC;
+		width: 40px;
+		height: 40px;
+		display: inline-block;
+		text-align: center;
+		border-radius: 20px;
+		position: relative;
+		&:active {
+			background-color: #F6F6F6;
+		}
+		&:after {
+			display: block;
+			content: "";
+			width: 0;
+			height: 0;
+			border-style: solid;
+			position: absolute;
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+		}
+	}
+	&__prev {
+		&:after {
+			border-width: 6px 8px 6px 0;
+			border-color: transparent #333 transparent transparent;
+			left: 47%;
+		}
+	}
+	&__next {
+		margin-left: 10px;
+		&:after {
+			border-width: 6px 0 6px 8px;
+			border-color: transparent transparent transparent #333;
+			left: 53%;
+		}
+	}
+}

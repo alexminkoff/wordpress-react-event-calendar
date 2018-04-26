@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import CalendarFrame from './calendar/frame.jsx';
+import Frame from './frame.jsx';
+
 import CalendarNavigation from './calendar/navigation.jsx';
 import CalendarGrid from './calendar/grid.jsx';
 import CalendarModals from './calendar/modals.jsx';
@@ -54,7 +55,7 @@ class Calendar extends Component {
 	// Get calendar title
 	//
 	getTitle() {
-		return dateFormat(this.props.date, 'mmmm yyyy');
+		return dateFormat(this.state.date, 'mmmm yyyy');
 	}
 
 	//
@@ -62,7 +63,7 @@ class Calendar extends Component {
 	//
 	render() {
 		return (
-			<CalendarFrame>
+			<Frame>
 				<div className="wprec-calendar" style={{ display: 'none' }}>
 					<div className="wprec-calendar__title">{this.getTitle()}</div>
 					<CalendarNavigation date={this.state.date} setDate={this.setDate.bind(this)} />
@@ -86,7 +87,7 @@ class Calendar extends Component {
 						<CalendarEventModal event={this.state.event} setEvent={this.setEvent.bind(this)} />
 					}
 				</CalendarModals>
-			</CalendarFrame>
+			</Frame>
 		);
 	}
 }

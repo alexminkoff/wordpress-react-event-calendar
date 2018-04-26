@@ -1,0 +1,96 @@
+.wprec-calendar-grid {
+	background: #FFF;
+	&__cell {
+		position: relative;
+		width: 100%;
+		height: 130px;
+		box-sizing: border-box;
+		vertical-align: top;
+		padding: 0;
+	}
+	&__date {
+		font-size: 16px;
+		text-align: right;
+		margin: 5px;
+		display: block;
+		color: #444;
+	}
+	&__cell--disabled &__date {
+		color: #CCC;
+	}
+	&__time {
+		float: right;
+		margin-left: 5px;
+		font-weight: bold;
+	}
+	&__event {
+		display: block;
+		font-size: 11px;
+		padding: 8px 4px;
+		text-decoration: none;
+		font-family: sans-serif;
+		margin-bottom: 1px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		&,
+		&--blue {
+			background: rgba(#469, 0.15);
+			color: #469;
+			&:hover {
+				background: rgba(#469, 0.125);
+			}
+		}
+		&--red {
+			background: rgba(#955, 0.15);
+			color: #955;
+			&:hover {
+				background: rgba(#955, 0.125);
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.wprec-calendar-grid {
+		border: 1px solid #CCC;
+		border-top-width: 0;
+		&--empty:after {
+			display: block;
+			border-top: 1px solid #CCC;
+			content: "There are no events this month.";
+			padding: 10px;
+			font-size: 14px;
+			color: #666;
+		}
+		&__cell {
+			display: block;
+			border-top: 1px solid #CCC;
+			&--empty,
+			&--disabled {
+				display: none;
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.wprec-calendar-grid {
+		&__cell {
+			border-top: 1px solid #CCC;
+			border-left: 1px solid #CCC;
+			&:last-child {
+				border-right: 1px solid #CCC;
+			}
+		}
+		&__row:last-child &__cell {
+			border-bottom: 1px solid #CCC;
+		}
+		&__row:last-child &__cell:first-child {
+			border-bottom-left-radius: 3px;
+		}
+		&__row:last-child &__cell:last-child {
+			border-bottom-right-radius: 3px;
+		}
+	}
+}

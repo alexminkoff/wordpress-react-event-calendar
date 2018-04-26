@@ -1,0 +1,55 @@
+.wprec-calendar {
+	font-family: Georgia;
+	position: relative;
+	display: block !important;
+	&__title {
+		font-size: 2em;
+		margin-bottom: 1em;
+		font-weight: bold;
+		color: #444;
+	}
+	&__table {
+		width: 100%;
+		border-collapse: separate;
+		border-spacing: 0;
+		table-layout: fixed;
+		background: #FFF;
+		border-radius: 3px;
+	}
+	&__header {
+		padding: 8px;
+		background: rgba(#469, 0.075);
+		font-weight: normal;
+		font-size: 14px;
+		color: #444;
+	}
+}
+
+@media (max-width: 767px) {
+	.wprec-calendar {
+		table, tbody, tr, th {
+			display: block;
+		}
+		thead {
+			display: none;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.wprec-calendar {
+		&__header {
+			border-top: 1px solid #CCC;
+			border-left: 1px solid #CCC;
+			&:last-child {
+				border-right: 1px solid #CCC;
+			}
+			&:first-child {
+				border-top-left-radius: 3px;
+			}
+			&:last-child {
+				border-top-right-radius: 3px;
+			}
+		}
+	}
+}
