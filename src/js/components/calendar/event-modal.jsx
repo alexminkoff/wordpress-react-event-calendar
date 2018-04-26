@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Frame from '../frame.jsx';
+import CalendarFrame from './frame.jsx';
 
 //
 // WPREC Calendar Event Modal
@@ -24,7 +24,7 @@ class CalendarEventModal extends Component {
 				<div className="wprec-calendar-event-modal">
 					<div className="wprec-calendar-event-modal__overlay" />
 					<div className="wprec-calendar-event-modal__window">
-						<Frame fullscreen={true}>
+						<CalendarFrame fullscreen={true}>
 							<div className="wprec-calendar-event-modal__wrap1" onClick={this.closeModal.bind(this)}>
 								<div className="wprec-calendar-event-modal__wrap2">
 									<div className="wprec-calendar-event-modal__wrap3">
@@ -35,7 +35,7 @@ class CalendarEventModal extends Component {
 									</div>
 								</div>
 							</div>
-						</Frame>
+						</CalendarFrame>
 					</div>
 				</div>);
 		}

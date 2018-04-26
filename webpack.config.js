@@ -29,6 +29,22 @@ const jsConfig = {
 					}
 				}
 			},
+			{
+				test: /\.scss$/,
+				use: [
+					'css-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							plugins: [
+								require('autoprefixer')(),
+								require("css-mqpacker")()
+							]
+						}
+					},
+					'sass-loader'
+				]
+			}
 		]
 	},
 	output: {

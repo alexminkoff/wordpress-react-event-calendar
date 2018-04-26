@@ -1,70 +1,63 @@
 import React, { Component } from 'react';
 
-import Frame from './frame.jsx';
+var dateFormat = require('dateformat');
 
+import CalendarFrame from './calendar/frame.jsx';
 import CalendarNavigation from './calendar/navigation.jsx';
 import CalendarGrid from './calendar/grid.jsx';
 import CalendarModals from './calendar/modals.jsx';
-import CalendarEventModal from './calendar/event-modal.jsx'
+import CalendarEventModal from './calendar/event-modal.jsx';
 
 import DemoData from '../demo-data.js';
 
-var dateFormat = require('dateformat');
-
-//
-// WPREC Calendar
-//
+/** WPREC calendar widget component */
 
 class Calendar extends Component {
 
-	//
-	// Constructor
-	//
+	/**
+	* Create a calendar.
+	* @param {Object[]} props - The component properties.
+	*/
 	constructor(props) {
 		super(props);
+		this.iframe = React.createRef();
 		this.state = {
 			date: new Date(),
-			mounted: false,
 			events: DemoData,
 			event: null
 		};
 	}
 
-	//
-	// Set the current date
-	//
+	/**
+	* Set the calendar date.
+	* @param {Date} date - The date to set the calendar to.
+	*/
 	setDate(date) {
 		this.setState({ date: date });
 	}
 
-	//
-	// Set the current event
-	//
+	/**
+	* Set the current visible event.
+	* @param {Object[]} event - The event to display.
+	*/
 	setEvent(event) {
 		this.setState({ event: event });
 	}
 
-	//
-	// Set the current date
-	//
-	componentDidMount() {
-		this.setState({ mounted: true });
-	}
-
-	//
-	// Get calendar title
-	//
+	/**
+	* Get a title for the calendar.
+	*/
 	getTitle() {
 		return dateFormat(this.state.date, 'mmmm yyyy');
 	}
 
-	//
-	// Render
-	//
+	/**
+	* Render the calendar widget
+	*/
 	render() {
 		return (
-			<Frame>
-				<div className="wprec-calendar" style={{ display: 'none' }}>
+			<CalendarFrame>
+				<div className="wprec-calendar">
 					<div className="wprec-calendar__title">{this.getTitle()}</div>
 					<CalendarNavigation date={this.state.date} setDate={this.setDate.bind(this)} />
 					<table className="wprec-calendar__table">
@@ -87,7 +80,7 @@ class Calendar extends Component {
 						<CalendarEventModal event={this.state.event} setEvent={this.setEvent.bind(this)} />
 					}
 				</CalendarModals>
-			</Frame>
+			</CalendarFrame>
 		);
 	}
 }
