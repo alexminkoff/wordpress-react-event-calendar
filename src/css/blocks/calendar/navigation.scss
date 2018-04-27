@@ -1,19 +1,19 @@
+//
+// WPREC Calendar Navigation
+//
+
 .wprec-calendar-navigation {
 	position: absolute;
 	top: 0;
 	right: 0;
-	font-size: 2em;
 	&__prev,
 	&__next {
 		text-decoration: none;
 		background-color: #FFF;
 		color: #666;
 		border: 1px solid #CCC;
-		width: 40px;
-		height: 40px;
 		display: inline-block;
 		text-align: center;
-		border-radius: 20px;
 		position: relative;
 		&:active {
 			background-color: #F6F6F6;
@@ -42,6 +42,34 @@
 			border-width: 6px 0 6px 8px;
 			border-color: transparent transparent transparent #333;
 			left: 53%;
+		}
+	}
+}
+
+//
+// WPREC Calendar Navigation - Mobile
+//
+@media (max-width: 767px) {
+	.wprec-calendar-navigation {
+		&__prev,
+		&__next {
+			width: 30px;
+			height: 30px;
+			border-radius: 15px;
+		}
+	}
+}
+
+//
+// WPREC Calendar Navigation - Desktop
+//
+@media (min-width: 768px) {
+	.wprec-calendar-navigation {
+		&__prev,
+		&__next {
+			width: 40px;
+			height: 40px;
+			border-radius: 20px;
 		}
 	}
 }

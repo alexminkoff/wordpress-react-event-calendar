@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Frame from 'react-frame-component';
+import ReactFrameComponent from 'react-frame-component';
 
-import css from '../../../css/frame.scss';
+/** WPREC frame component */
 
-/** WPREC calendar widget frame */
-
-class CalendarFrame extends Component {
+class Frame extends Component {
 
 	/**
 	* Create a calendar.
@@ -28,20 +26,19 @@ class CalendarFrame extends Component {
 			`<!DOCTYPE html>
 			<html>
 				<head>
-					<style>
-					html, body { margin: 0; padding: 0 }
-					${css}
-					</style>
+					<style>${this.props.css}</style>
 				</head>
-				<body><div></div></body>
+				<body>
+					<div></div>
+				</body>
 			</html>`
 		);
 	}
 
 	/**
-	* Adjust the height of the calendar frame to match its contents.
+	* Update the height of the calendar frame to match its contents.
 	*/
-	adjustHeight() {
+	updateHeight() {
 		var iframe = ReactDOM.findDOMNode(this.iframe.current);
 		var height = this.props.fullscreen === true ? '100vh' :
 			iframe.contentWindow.document.body.scrollHeight || 'auto';
@@ -53,31 +50,36 @@ class CalendarFrame extends Component {
 	}
 
 	/**
-	 * The component mounted.
+	 * On mount, start listening for window resizes.
 	 */
 	componentDidMount() {
-		window.addEventListener('resize', this.adjustHeight.bind(this));
+		window.addEventListener('resize', this.updateHeight.bind(this));
 	}
 
 	/**
-	 * The component will unmount.
+	 * On unmount, stop listening for window resizes.
 	 */
 	componentWillUnmount() {
-		window.removeEventListener('resize', this.adjustHeight.bind(this));
+		window.removeEventListener('resize', this.updateHeight.bind(this));
 	}
 
-
 	/**
-	* Render the calendar widget
+	* Render the frame.
 	*/
 	render() {
 		return (
-			<Frame className="wprec-frame" ref={this.iframe} initialContent={this.initialContent()} style={{ height: this.state.height }}
-					contentDidMount={this.adjustHeight.bind(this)} contentDidUpdate={this.adjustHeight.bind(this)}>
+			<ReactFrameComponent
+				className="wprec-frame"
+				ref={this.iframe}
+				initialContent={this.initialContent()}
+				style={{ height: this.state.height }}
+				contentDidMount={this.updateHeight.bind(this)}
+				contentDidUpdate={this.updateHeight.bind(this)}
+			>
 				{this.props.children}
-			</Frame>
+			</ReactFrameComponent>
 		);
 	}
 }
 
-export default CalendarFrame;
+export default Frame;

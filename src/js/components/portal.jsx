@@ -1,41 +1,39 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-//
-// WPREC Calendar - Modals
-//
+/** WPREC portal component */
 
-class CalendarModals extends Component {
+class Portal extends Component {
 
-	//
-	// Constructor
-	//
+	/**
+	* Create a portal.
+	* @param {Object[]} props - The component properties.
+	*/
 	constructor(props) {
 		super(props);
 		this.el = document.createElement('div');
-		this.el.id = 'wprec-calendar-modals';
 	}
 
-	//
-	// Add this portal to the modal root
-	//
+	/**
+	* Add the portal element to the document body on mount.
+	*/
 	componentDidMount() {
 		document.body.appendChild(this.el);
 	}
 
-	//
-	// Remove this portal from the modal root
-	//
+	/**
+	* Remove the portal element from the document body on unmount.
+	*/
 	componentWillUnmount() {
 		document.body.removeChild(this.el);
 	}
 
-	//
-	// Render children
-	//
+	/**
+	* Render children inside the portal.
+	*/
 	render() {
 		return ReactDOM.createPortal(this.props.children, this.el);
 	}
 }
 
-export default CalendarModals;
+export default Portal;

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-//
-// WPREC Calendar - Navigation
-//
+/** WPREC calendar navigation component */
 
 class CalendarNavigation extends Component {
 

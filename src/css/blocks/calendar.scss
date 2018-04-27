@@ -1,12 +1,18 @@
+//
+// WPREC Calendar
+//
+
 .wprec-calendar {
 	font-family: Georgia;
 	position: relative;
 	display: block !important;
 	&__title {
-		font-size: 2em;
 		margin-bottom: 1em;
 		font-weight: bold;
 		color: #444;
+		display: block;
+		height: 40px;
+		line-height: 40px;
 	}
 	&__table {
 		width: 100%;
@@ -16,28 +22,32 @@
 		background: #FFF;
 		border-radius: 3px;
 	}
-	&__header {
-		padding: 8px;
-		background: rgba(#469, 0.075);
-		font-weight: normal;
-		font-size: 14px;
-		color: #444;
-	}
 }
+
+//
+// WPREC Calendar - Mobile
+//
 
 @media (max-width: 767px) {
 	.wprec-calendar {
-		table, tbody, tr, th {
-			display: block;
+		&__title {
+			font-size: 1em;
 		}
-		thead {
-			display: none;
+		&__table {
+			display: block;
 		}
 	}
 }
 
+//
+// WPREC Calendar - Desktop
+//
+
 @media (min-width: 768px) {
 	.wprec-calendar {
+		&__title {
+			font-size: 2em;
+		}
 		&__header {
 			border-top: 1px solid #CCC;
 			border-left: 1px solid #CCC;

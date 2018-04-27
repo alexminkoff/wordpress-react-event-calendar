@@ -1,3 +1,7 @@
+//
+// WPREC Calendar Grid
+//
+
 .wprec-calendar-grid {
 	background: #FFF;
 	&__cell {
@@ -51,10 +55,15 @@
 	}
 }
 
+//
+// WPREC Calendar Grid - Mobile
+//
+
 @media (max-width: 767px) {
 	.wprec-calendar-grid {
 		border: 1px solid #CCC;
 		border-top-width: 0;
+		display: block;
 		&--empty:after {
 			display: block;
 			border-top: 1px solid #CCC;
@@ -62,6 +71,9 @@
 			padding: 10px;
 			font-size: 14px;
 			color: #666;
+		}
+		&__row {
+			display: block;
 		}
 		&__cell {
 			display: block;
@@ -73,6 +85,10 @@
 		}
 	}
 }
+
+//
+// WPREC Calendar Grid - Desktop
+//
 
 @media (min-width: 768px) {
 	.wprec-calendar-grid {

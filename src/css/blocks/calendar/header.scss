@@ -1,0 +1,36 @@
+//
+// WPREC Calendar Header - Mobile
+//
+
+@media (max-width: 767px) {
+	.wprec-calendar-header {
+		display: none;
+	}
+}
+
+//
+// WPREC Calendar Header - Desktop
+//
+
+@media (min-width: 768px) {
+	.wprec-calendar-header {
+		&__cell {
+			padding: 8px;
+			background: rgba(#469, 0.075);
+			font-weight: normal;
+			font-size: 14px;
+			color: #444;
+			border-top: 1px solid #CCC;
+			border-left: 1px solid #CCC;
+			&:last-child {
+				border-right: 1px solid #CCC;
+			}
+			&:first-child {
+				border-top-left-radius: 3px;
+			}
+			&:last-child {
+				border-top-right-radius: 3px;
+			}
+		}
+	}
+}
